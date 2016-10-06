@@ -1,0 +1,178 @@
+---
+title: "Untitled"
+author: "Linting Gong"
+date: "2016/9/29"
+output: html_document
+---
+
+```{r}
+#1a)
+#solve: create a vector (1,2,3....20)
+#input:numbers;output:sequence from 1-20 
+c(1:20)#use function to combine values from 1 to 20 into a vector
+#1b)
+#solve:create a vector(20,19,...1)
+#input:numbers;output:sequence from 20-1
+c(20:1)#use function to combine values from 20 to 1 into a vector
+
+#1c)
+#solve: create a vector (1..19,20...1);
+#input:numbers;output:a sequence 1...19,20,...1
+c(1:20,19:1)#use comma to connect two vectors, as the example is given in th help(c):c(1,7:9). First is from 1 - 20, and then from 19-1.
+
+#1d)	
+#solve:assign a name to the vector 
+#input:the name;the vector; output:the name of the vector 
+tmp <- c(4,6,3)# assign a name tmp to this vector c. 
+tmp
+#1e)
+#solve:(4,6,3,	4,6,3,...,4,6,3)	where	there	are	10	occurrences	of	4.	
+#input:numbers 4 6 3 ; output:4, 6,3 each repeat 10 times 
+rep(tmp,10)#use function 'rep' to repeat the occurrences of each element to 10 times 
+
+#1f)
+#solve:(4,6,3,	4,6,3,...,4,6,3,4)	where	there	are	11	occurrences	of4,10	occurrences	of	6	and	10	occurrences	of	3.	
+#input:numbers 4,6,3; output:11 times 4;10 times 3;10 times 6
+#Use rep function,rep(x,...) len means length=31. Repeat 31 times, so we have one more 4 in here. We have 11=4,10=3,10=6
+rep(tmp,len=31)
+
+#1g)
+#solve:10	occurrences	of 4,20 occurrences	of	6	and	30	occurrences	of	3.
+#input:tmp; output:10	occurrences	of 4,20 occurrences	of	6	and	30	occurrences	of3.
+#use rep function, rep(x,...) times is a interger vector giving the number of times to repeat each element. Because we have different number of a, b and c. we need to use c function to define each times of a and b and c with different number of times.
+rep(tmp,times=c(10,20,30))
+
+#2)
+#solve:. Create	a	vector of	the	values of	e^x*cos(x) at	x	=	3,3.1,3.2,...,5.9,6;
+#input:numbers 3,3.1,3.2,....6;output:the values of each e^x*cos(x)
+tmp <- seq(3,6,by=0.1)#assign a seq to the name tmp from 3-6 and increasing by 0.1 
+exp(tmp)*cos(tmp)#exp instead of exponential value; cos is cosine
+
+#3a)
+#solve:create a function that returns the (0.1^30.2^1,0.1^60.2^4,....0.1^36.2^34)
+#input:numbers;output:a sequence of numbers of (0.1^30.2^1,0.1^60.2^4,....0.1^36.2^34)
+#we want the product of 0.1*0.2, and the exponential*3 one by one.The funtion  sequ(...)is used as:seq(from a #, to =#, by = ((to - from)/(length.out - 1)). 
+a=(0.1^seq(3,36,by=3))#define as (0.1^(setq))from 3 to 36 and *3
+#(^ is the signal of exponential value ) 
+b=(0.2^seq(1,34,by=3))
+#*is the product
+a*b
+
+#3b)
+#solve:the vectors the HW is given 
+#input:numbers;output:the value of each vector 
+#I create a as the the seq function (2,2^2,2^3..2^25) exponential from 1-25, increasing 1. 
+a=(2^seq(1,25,by=1))
+b=c(1:25)#b is a function c(1:25) returns the number from 1 to 25 and then a/b
+a/b
+
+#4a)
+#solve:the sum of i from 10 -100 of (i^3+4i^2)
+#input:i;output:the sum
+#assign a name to the sequence from 10 to 100 and then use the sum function get the final result 
+tmp <- c(10:100)
+sum(tmp^3+4*tmp^2)
+
+#4b)
+#solve:the sum of i from 1 -25 of (2^i/i+3^i/i^2)
+#input:i;output:the sum
+#assign a name to sequence from 1 to 25. use the the sum function to get the result. ^ means the power and / is devide 
+tmp<- c(1:25)
+sum((2^tmp)/tmp+(3^tmp)/(tmp^2))
+
+#5a)
+#solve:create ("label	1",	"label	2",	.....,	"label	30")
+#input:character:label and number:1-30;and space;
+#output:"label	1",	"label	2",	.....,	"label	30"
+#use the paste function:combine "label" and the sequence from 1 to 30.And notice that there exists space between label and the number
+paste("label",sep=" ", 1:30)
+
+#5b)
+#solve:create ("fn1",	"fn2",	...,	"fn30")
+#input:character:fn and number:1-30;no space;
+#output:"fn1",	"fn2",	...,	"fn30"
+#use the same function: combine "fn" and the sequence from 1 to 30 , but we need to concern space. there is no space. so we use sep="" instead of sep" ".usage paste (..., sep = " ", collapse = NULL) 
+paste("fn",sep="",1:30)
+
+#6a)
+#solve:create(y2-x1,...yn-xn-1)
+#input:xVec and yVec;output:the value of (y2-x1,...yn-xn-1)
+#we want to create the vector that (y2-x1,...yn-xn-1). Notice there is no y1 and xn. so we need to fix it. 
+set.seed(50)
+xVec <- sample(0:999, 250, replace=T)
+yVec <- sample(0:999, 250, replace=T)
+c(yVec[-1] - xVec[-250])#yVec[-1] runs all element in yVex except the first one,xVec[-250]runs all element in xVec except the last one
+
+#6b)
+#solve:create (siny1/cosx2,siny2,cosx3,....sinyn-1/cosxn) 
+#input:xVec and yVec;output:the value of  (siny1/cosx2,siny2,cosx3,....sinyn-1/cosxn) 
+#we want to find (siny1/cosx2,siny2,cosx3,....sinyn-1/cosxn) This vector also does not have sinyn-1 and cos1. we need to fix this problem by using yVec[-250]/cos(xVec[-1]
+c(sin(yVec[-250]) / cos(xVec[-1]))
+
+#6c)
+#solve:create (x1+2x2-x3,....xn-2+2xn-1-xn).
+#input:xVec and yVec;output:the value of  (x1+2x2-x3,....xn-2+2xn-1-xn).
+#Use'xVec[-c(249,250)]' to remove last two elements from the xVec.2*xVect which removes the first and last one-xVector for 1st and 2nd one. 
+c(xVec[-c(249,250)]+2*xVec[-c(1,250)]-xVec[-c(1,2)])
+
+#6d
+#solve:calculate the sum 
+#input:xVec ;output:the sum of the value 
+#We need to concern the number of xVect:for Xi, it goes from x1 to x249; for xi+1, it goes from x2 to x250
+sum(exp(-xVec[-1])/(xVec[-250]+10))
+
+#7a)
+#solve:Pick	out	the	values	in	yVec	which	are	>	600.
+#input:yVec;output:yVec	which	are	>	600.
+yVec[yVec>600]#pick out the numbers in yVec bigger than 600(>)
+
+#7b)solve:index	positions	in	yVec	of	the	values	which	are	>	600
+#input:yVec;output:index	positions	in	yVec	of	the	values	which	are	>	600
+#find a vectors from 1 to the length of yVec. And under the condition that yVec must bigger than 600 
+c(1:length(yVec))[yVec>600]
+
+#7c)solve:	the	values	in	xVec	which	correspond	to	the	values	in	yVec	which	are	>	600
+#input:yVec xVec;output:	the	values	in	xVec	which	correspond	to	the	values	in	yVec	which	are	>	600	
+# define the yVec > 600 first. We have [yVec>600]. Then consider the xVec. Here we got the answer. 
+xVec[yVec>600]
+
+
+#7d)
+#solve:create the vector HW is given
+#input:xVec and mean ;output:the vectors of sqaure root 
+#In order to get the fct.We need to use 'sqrt' and 'abs' function.sqrt(x) computes the sqaure root of x. then get the absolute values of x. Use x in the xVec minus mean of (xVec)
+sqrt(abs(xVec-mean(xVec)))
+
+#7e)#solve:the values in yVec	are	within	200	of	the	maximum	value	of	the	terms	in	yVec
+#input:yVec ;output:the values in yVec	are	within	200	of	the	maximum	value	of	the	terms	in	yVec
+# Use sum function that return all the values that bigger than the [maximum of (yVec)-200]
+sum(yVec>max(yVec)-200)
+
+#7f)
+#solve:hou many # in xVec that divisible by 2. 
+#input:xVec ;output:hou many # in xVec that divisible by 2
+#Use sum function that returns the total numbers in xVec divisible by 2. note %% is used as mod operator. x%%2 == 0 means x in xVec are divisible by2. 
+sum(xVec%%2==0)
+
+#7g)#solve:Sort	the	numbers	in	the	vector	xVec	in	the	order	of	increasing	values	in yVec.
+#input:xVec yVec ;output:Sort	the	numbers	in	the	vector	xVec	in	the	order	of	increasing	values	in yVec.
+#Use order function:returns a permutation which rearranges its first argument into ascending ties by further arguments.
+xVec[order(yVec)]
+
+#7h)
+#solve:Pick	out	the	elements	in	yVec	at	index	positions	1,4,7,10,13,???
+#input:yVec;output:	the	elements	in	yVec	at	index	positions	1,4,7,10,13,???
+#treat each three element as a group by order,First is True, 2nd and 3rd are F, so we pick the first.
+yVec[c(T,F,F)]
+
+#8)
+#solve:	using	the	function	cumprod	to calclulate the function is given 
+#input:numbers ;output:	the result of the calculation 
+a<- seq(3,39,by=2)#define the denominartor
+b<- seq(2,38,by=2)#define numerator
+1+sum(cumprod(b/a))#use cumprod function in order to returns a vector whose elements are the cumulative products. What is more,in order to compute easily we count 1 individually
+```
+
+
+
+
