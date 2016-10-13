@@ -1,0 +1,43 @@
+---
+title: "Gong_Linting HW5"
+author: "Linting Gong"
+date: "2016/10/13"
+output: html_document
+---
+
+```{r }
+
+#1. Print	to	the	console	all	methods	and	attributes	associates	with	a	dataframe.Write	code	to	determine	the	number	of	columns	in	a	dataframe.
+library('ggplot2') # we use the package ggplot2 which contains diamonds dataset 
+data("diamonds")
+attributes(diamonds)#use attributes() function to get all attributes associated with the diamonds dataframe 
+class(diamonds)#we use the class function to get all calsses associated with the diamoonds dataframe. The diamonds dataframe has three classes:"tbl_df" "tbl"  "data.frame"
+methods(class=class(diamonds)[3])# use methods() function to get all methods associated with the data.frame,  use 'class(diamonds)[3]' to focus on the 'data.frame' class.
+
+ncol(diamonds)#use it to determine	the	number	of	columns	in	a	dataframe:10 
+
+#2. Write	code	to	determine	how	many	rows	are	in	a	dataframe
+nrow(diamonds)#count the number of rows
+
+#3.Write	code	to	extract	the	column	names	from	a	dataframe	and print	the	names	of	the	columns (one	per	line) to	the	console.
+cat(colnames(diamonds),sep="\n")  
+#extract	the	column	names	from	a	dataframe. and use  (sep= '\n') to make d print	the	names	of	the	columns (one	per	line) to	the	console.
+
+#4Write	code	to	determine	the	type	of	each	column	(numeric,	factor,	logical,etc.).	Print	the	type	of	each	column	to	the	console
+sapply(diamonds,class)#use the sapply function to determine	the	type of each column
+
+#5Write	code	that will loop	through	any	dataframe	and	calculate	the	mean	of every	numeric	column. Label	the	output	with	the	name	of	the	column
+lapply(diamonds[sapply(diamonds, is.numeric)],mean)#using the sapply function to get the the every numeric column. and then using lapply function to get the mean of every numeric column. 
+
+#6Write	code	that	will	loop	through	any	dataframe	and	create	a	frequency	table	for	every	factor	column.	Label	the	output	with	the	name	of	the	column.
+summary(diamonds[sapply(diamonds,is.factor)])
+#same idea as #5. We use sapply function with every factor columns, and then use summary function to get the frequency for every factor columns. 
+
+#7Write	code	that	will	loop	through	any	dataframe	and	determine	the	number of	rows	containing	NA	(missing	value)	in	each	column and the	percentage	of rows containing	an	NA in	any	of	the	columns. 
+apply(sapply(diamonds,is.na),2,sum)#using appply fucntion extract the number of rows containing NA(missing value) in each columns
+sum(rowSums(is.na(diamonds))>0)/nrow(diamonds)
+#using the sum function to get the percentage of tows containing an NA in any of Columns 
+#
+```
+
+
