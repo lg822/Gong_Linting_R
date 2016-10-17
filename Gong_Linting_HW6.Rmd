@@ -1,0 +1,107 @@
+---
+title: "Gong_Lintin_ HW6"
+author: "Linting Gong"
+date: "2016/10/13"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+require(ggplot2)
+#we need to require ggplot first, and then manipulte the data 
+data("diamonds")
+#bring the dataset diamond 
+
+#Q1Create	a	histogram	for	every	numeric	column	in	the	diamonds	dataset
+
+#in order to get each histogram, we first create a variable and use ggplot &dataset 
+#we divide the data up into 60 or(smaller) bins, and title it with ggtitle (function)
+
+histcarat <- ggplot(diamonds,aes(carat))
+#create the carat histogram variable 
+histcarat + geom_histogram(bins = 60) + ggtitle("Carat Histogram")+xlim(0, 3)
+
+#plot the histogram of that variable. Limited the histogram
+#using xlim to remove the outliers from the histogram.  If we want to view the full histogram, we can remove the + xlim(0, 3)
+
+histdepth <- ggplot(diamonds,aes(depth))
+#create the depth histogram variable 
+histdepth + geom_histogram(bins = 60) + ggtitle("Depth Histogram") + xlim(55, 70)
+#plot the histogram of that variable.&limited the histogram
+#using xlim to remove the outliers from the histogram.  To view the full histogram, remove the + xlim(55, 70)
+
+histtable <- ggplot(diamonds,aes(table))
+#create the table histogram variable 
+histtable + geom_histogram(bins = 40) + ggtitle("Table Histogram") + xlim(50, 70)
+#plot the histogram of that variable. Limit the histogram with xlim(50, 70)
+#using xlim to remove the outliers from the histogram.  
+
+histprice <- ggplot(diamonds,aes(price))
+#create the price histogram variable 
+histprice + geom_histogram(bins = 60) + ggtitle("Price Histogram")
+#plot the histogram of that variable.
+
+xhist <- ggplot(diamonds,aes(x))
+#create the x histogram variable 
+xhist + geom_histogram(bins = 60) + ggtitle("X Histogram") + xlim(3, 10)
+#plot the histogram of that variable.limit the histogram with xlim(3,10)
+
+yhist <- ggplot(diamonds,aes(y))
+#create the y histogram variable 
+yhist + geom_histogram(bins = 180) + ggtitle("Y Histogram") + xlim(3, 10)
+#plot the histogram of that variable.  limit the histogram with xlim(3,10)
+
+zhist <- ggplot(diamonds,aes(z))
+#create the z histogram variable 
+zhist + geom_histogram(bins = 60) + ggtitle("Z Histogram") + xlim(2, 6)
+#plot the histogram of that variable. limit the histogram with xlim(2,6)
+
+
+#Q2 Create a simple scatter plot of Weight and Price using Color as a facet.
+#Define scatplot to be a ggplot using the diamonds dataset:(mapping the x axis to'carat'&y axis to 'price'and colour to color)
+scatplot <- ggplot(diamonds, aes(x=carat, y=(price), colour=color))
+scatplot <- scatplot + geom_point(size=0.8) + ggtitle("Diamonds - Weight to Price by Color",colour="blue") + xlab("Weight")
+#plot the data on a scatter plot, titling the graph, x-axis, y-axis, and key as appropriate(reschedual the size of the points)
+scatplot <- scatplot + ylab("Price") + labs(colour = "factor(color)")
+print(scatplot) 
+
+#Q3 Remove the non-linearity and replot
+#Define scatlin(linear scat) to be a ggplot using the diamonds dataset:(mapping the x axis to the log(carat), the y axis to the log(price), and colour to color)
+scatlin <- ggplot(diamonds, aes(x=log(carat), y=log(price), colour=color))
+scatlin <- scatlin + geom_point(size=0.8) + ggtitle("Diamonds - Weight to Price (Linear)") + xlab("Weight")
+# plot the data on a scatter plot, titling the graph, x-axis, y-axis, and key as appropriate
+scatlin <- scatlin + ylab("Price") + labs(colour = "factor(color)")
+print(scatlin) 
+
+#4 Remove the linear trend (create a linear model and use the transformed weight on the x-axis and the residuals on the y-axis)
+#create a linear that  we can fit a linear model of the log(price) to the log(carat) within the diamonds dataset
+linear <- lm(log(price)~log(carat), data = diamonds)
+residual <- resid(linear)#create a new variable residual that extracts model residuals from it
+WPBC <- ggplot(diamonds, aes(x=log(carat), y=residual, colour=color))
+#define WPBC to be a ggplot object using the diamonds dataset and (mapping the x axis to the log(carat), the y axis to residual, and the colour to color)
+WPBC <- WPBC + geom_point(size=1.0) + ggtitle("Diamonds - Weight to Price by Color") + xlab("Weight")
+#plot the data on a scatter plot, titling the graph, x-axis, y-axis, and key as appropriate(reschedual the size of point)
+WPBC <- WPBC + ylab("Price Residuals") + labs(colour = "factor(color)") + theme(legend.position="top")
+#As what was shown in the homework.Move the legend to the top of the scatterplot to match the example
+print(WPBC)
+
+
+
+
+
+
+
+
+
+```
+
+
