@@ -69,7 +69,7 @@ zhist + geom_histogram(bins = 60) + ggtitle("Z Histogram") + xlim(2, 6)
 #Q2 Create a simple scatter plot of Weight and Price using Color as a facet.
 #Define scatplot to be a ggplot using the diamonds dataset:(mapping the x axis to'carat'&y axis to 'price'and colour to color)
 scatplot <- ggplot(diamonds, aes(x=carat, y=(price), colour=color))
-scatplot <- scatplot + geom_point(size=0.8) + ggtitle("Diamonds - Weight to Price by Color",colour="blue") + xlab("Weight")
+scatplot <- scatplot + geom_point(size=0.8) + ggtitle("Diamonds - Weight to Price by Color",colour="blue") + xlab("Weight")+theme(plot.title = element_text(colour = "blue"))
 #plot the data on a scatter plot, titling the graph, x-axis, y-axis, and key as appropriate(reschedual the size of the points)
 scatplot <- scatplot + ylab("Price") + labs(colour = "factor(color)")
 print(scatplot) 
@@ -77,7 +77,7 @@ print(scatplot)
 #Q3 Remove the non-linearity and replot
 #Define scatlin(linear scat) to be a ggplot using the diamonds dataset:(mapping the x axis to the log(carat), the y axis to the log(price), and colour to color)
 scatlin <- ggplot(diamonds, aes(x=log(carat), y=log(price), colour=color))
-scatlin <- scatlin + geom_point(size=0.8) + ggtitle("Diamonds - Weight to Price (Linear)") + xlab("Weight")
+scatlin <- scatlin + geom_point(size=0.8) + ggtitle("Diamonds - Weight to Price (Linear)") + xlab("Weight")theme(plot.title = element_text(colour = "blue"))
 # plot the data on a scatter plot, titling the graph, x-axis, y-axis, and key as appropriate
 scatlin <- scatlin + ylab("Price") + labs(colour = "factor(color)")
 print(scatlin) 
@@ -90,7 +90,7 @@ WPBC <- ggplot(diamonds, aes(x=log(carat), y=residual, colour=color))
 #define WPBC to be a ggplot object using the diamonds dataset and (mapping the x axis to the log(carat), the y axis to residual, and the colour to color)
 WPBC <- WPBC + geom_point(size=1.0) + ggtitle("Diamonds - Weight to Price by Color") + xlab("Weight")
 #plot the data on a scatter plot, titling the graph, x-axis, y-axis, and key as appropriate(reschedual the size of point)
-WPBC <- WPBC + ylab("Price Residuals") + labs(colour = "factor(color)") + theme(legend.position="top")
+WPBC <- WPBC + ylab("Price Residuals") + labs(colour = "factor(color)") + theme(legend.position="top")+theme(plot.title = element_text(colour = "blue"))
 #As what was shown in the homework.Move the legend to the top of the scatterplot to match the example
 print(WPBC)
 
