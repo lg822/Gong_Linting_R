@@ -77,7 +77,7 @@ print(scatplot)
 #Q3 Remove the non-linearity and replot
 #Define scatlin(linear scat) to be a ggplot using the diamonds dataset:(mapping the x axis to the log(carat), the y axis to the log(price), and colour to color)
 scatlin <- ggplot(diamonds, aes(x=log(carat), y=log(price), colour=color))
-scatlin <- scatlin + geom_point(size=0.8) + ggtitle("Diamonds - Weight to Price (Linear)") + xlab("Weight")theme(plot.title = element_text(colour = "blue"))
+scatlin <- scatlin + geom_point(size=0.8) + ggtitle("Diamonds - Weight to Price (Linear)") + xlab("Weight")+theme(plot.title = element_text(colour = "blue"))
 # plot the data on a scatter plot, titling the graph, x-axis, y-axis, and key as appropriate
 scatlin <- scatlin + ylab("Price") + labs(colour = "factor(color)")
 print(scatlin) 
