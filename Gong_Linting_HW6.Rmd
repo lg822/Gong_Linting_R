@@ -5,6 +5,8 @@ date: "2016/10/13"
 output: html_document
 ---
 
+#Overall Comments: Good exercise! Your code and explanations really show your understanding of ggplot but I hope you can improve the format of your code in the future so that your code is more readable.
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -65,6 +67,8 @@ zhist <- ggplot(diamonds,aes(z))
 zhist + geom_histogram(bins = 60) + ggtitle("Z Histogram") + xlim(2, 6)
 #plot the histogram of that variable. limit the histogram with xlim(2,6)
 
+#Comments: Your way really work here but I suggest you to come up with a better way. You can first fliter out the numeric variables and then design a loop to draw a histogram for each.
+
 
 #Q2 Create a simple scatter plot of Weight and Price using Color as a facet.
 #Define scatplot to be a ggplot using the diamonds dataset:(mapping the x axis to'carat'&y axis to 'price'and colour to color)
@@ -73,6 +77,9 @@ scatplot <- scatplot + geom_point(size=0.8) + ggtitle("Diamonds - Weight to Pric
 #plot the data on a scatter plot, titling the graph, x-axis, y-axis, and key as appropriate(reschedual the size of the points)
 scatplot <- scatplot + ylab("Price") + labs(colour = "factor(color)")
 print(scatplot) 
+
+#Comments: Good try! I see you understanding of the layer plot thought in ggplot but I have one better format you may refer to
+ggplot(diamonds,aes(carat,price))+geom_point(aes(color=factor(color)))+labs(title="Diamonds-Weight to Price by Color",x='Weight',y='Price')
 
 #Q3 Remove the non-linearity and replot
 #Define scatlin(linear scat) to be a ggplot using the diamonds dataset:(mapping the x axis to the log(carat), the y axis to the log(price), and colour to color)
